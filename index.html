@@ -9,6 +9,9 @@
   <p>Online. Ready for commands.</p>
 
   <button onclick="speak()">Activate JARVIS</button>
+  
+  <button onclick="listen()">Talk to JARVIS 🎙️</button>
+<p id="result">Waiting for your voice...</p>
 
   <script>
     function speak() {
@@ -22,6 +25,33 @@
 
     speechSynthesis.cancel();
     speechSynthesis.speak(voice);
+    }
+    function listen() {
+    const SpeechRecognition =
+        window.SpeechRecognition || window.webkitSpeechRecognition;
+
+    const result = document.getElementById("result");
+
+    if (!SpeechRecognition) {
+        result.textContent = "Voice recognition is not supported.";
+        return;
+    }
+
+    const recognition = new SpeechRecognition();
+
+    recognition.lang = "en-IN";
+    recognition.interimResults = false;
+
+    recognition.onresult = function(event) {
+        const words = event.results[0][0].transcript;
+        result.textContent = "You said: " + words;
+    };
+
+    recognition.onerror = function() {
+        result.textContent = "Sorry, I couldn't hear you.";
+    };
+
+    recognition.start();
     }
   </script>
 </body>
