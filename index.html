@@ -12,10 +12,16 @@
 
   <script>
     function speak() {
-      const voice = new SpeechSynthesisUtterance(
-        "Hello. I am Jarvis. How can I help you?"
-      );
-      speechSynthesis.speak(voice);
+    const voice = new SpeechSynthesisUtterance(
+        "Hello, I am Jarvis. How can I help you?"
+    );
+
+    voice.pitch = 0.7;
+    voice.rate = 0.9;
+    voice.volume = 1;
+
+    speechSynthesis.cancel();
+    speechSynthesis.speak(voice);
     }
   </script>
 </body>
