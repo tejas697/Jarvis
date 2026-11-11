@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>JARVIS</title>
+</head>
+
+<body>
+  <h1>JARVIS</h1>
+  <p>Online. Ready for commands.</p>
+
+  <button onclick="speak()">Activate JARVIS</button>
+
+  <script>
+    function speak() {
+      const voice = new SpeechSynthesisUtterance(
+        "Hello. I am Jarvis. How can I help you?"
+      );
+      speechSynthesis.speak(voice);
+    }
+  </script>
+</body>
+</html>
